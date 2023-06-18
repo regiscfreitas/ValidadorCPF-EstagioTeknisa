@@ -3,30 +3,28 @@ $(document).ready(function () {
 });
 
 function validarCPF() {
-  //alert('Funcionou');
-  const cpfFormatado = document.getElementById("cpf").value;
-  const cpf = limpaFormatacao(cpfFormatado);
-  //console.log('Formatado ', cpfFormatado);
-  //console.log('Sem Formatação ',cpf);
-  if (cpf.length !== 11) {
-    mostraResultado("CPF deve conter 11 digitos.", "red");
-    return;
-  }
-  if (verificaDigitosRepetidos(cpf)) {
-    mostraResultado("CPF não pode conter repetição do mesmo digito.", "red");
-    return;
-  }
-  const digito1 = calcularDigitoVerificador(cpf, 1);
-  const digito2 = calcularDigitoVerificador(cpf, 2);
+  try {
+    const cpfFormatado = document.getElementById("cpf").value;
+    const cpf = limparFormatacao(cpfFormatado);
 
-  if (!digito1) {
-    mostraResultado(`CPF inválido - ${cpfFormatado}`, "red");
-    return;
-  }
+    if (cpf.length !== 11) {
+      throw new Error("CPF deve conter 11 dígitos.");
+    }
 
-  if (!digito2) {
-    mostraResultado(`CPF inválido - ${cpfFormatado}`, "red");
-    return;
+    if (verificaDigitosRepetidos(cpf)) {
+      throw new Error("CPF não pode conter repetição do mesmo dígito.");
+    }
+
+    const digito1 = calcularDigitoVerificador(cpf, 1);
+    const digito2 = calcularDigitoVerificador(cpf, 2);
+
+    if (!digito1 || !digito2) {
+      throw new Error(`CPF inválido - ${cpfFormatado}`);
+    }
+
+    exibirResultado(`CPF Válido - ${cpfFormatado}`, "green");
+  } catch (error) {
+    exibirResultado(error.message, "red");
   }
 }
 
@@ -46,14 +44,12 @@ function calcularDigitoVerificador(cpf, posicao) {
   return restoDivisao == digito;
 }
 
-function limpaFormatacao(cpf) {
-  //cpf = cpf.replace('.', '');  //pegar onde tiver ponto e mudar para vazio
-  cpf = cpf.replace(/\D/g, ""); //remove qualquer coisa diferente de caracteres por vazio
-
+function limparFormatacao(cpf) {
+  cpf = cpf.replace(/\D/g, "");
   return cpf;
 }
 
-function mostraResultado(texto, cor) {
+function exibirResultado(texto, cor) {
   const span = document.getElementById("resultado");
   span.innerHTML = texto;
   span.style.color = cor;
