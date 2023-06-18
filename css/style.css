@@ -1,18 +1,106 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
 .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+
+.container h3 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
     text-align: center;
 }
 
-.body input{
-    padding: 8px;
-    margin-right: 8px;
+
+.container .body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
-.body button{
-    padding: 8px 16px;
-
+.container .body input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
 }
 
-.footer{
+.container .body label {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.container button {
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    background: transparent;
+    border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+}
+
+.container button:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+    border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+}
+
+.footer {
     margin-top: 25px;
     font-size: 20px;
+    text-align: center;
 }
